@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+
+  backend:
+    container_name: crispy_notes_backend
+    build: .
+    ports:
+      - "8000:8000"
+    command: python manage.py runserver 0.0.0.0:8000
+    restart: always
+    volumes:
+      - ./core/:/app/
