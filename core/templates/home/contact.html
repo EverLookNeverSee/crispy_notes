@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+		<aside id="colorlib-breadcrumbs">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 breadcrumbs text-center">
+						<h2>Contact us</h2>
+						<p><span><a href="#">Home</a></span> / <span>Contact</span></p>
+					</div>
+				</div>
+			</div>
+		</aside>
+
+		<div id="colorlib-container">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h2 class="heading-2">Contact Information</h2>
+						<div class="row contact-info-wrap row-pb-lg">
+							<div class="col-md-3">
+								<p><span><i class="icon-location-2"></i></span> 198 West 21th Street, <br> Suite 721 New York NY 10016</p>
+							</div>
+							<div class="col-md-3">
+								<p><span><i class="icon-phone3"></i></span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+							</div>
+							<div class="col-md-3">
+								<p><span><i class="icon-paperplane"></i></span> <a href="mailto:EverLookNeverSee@Proton.Me">EverLookNeverSee@Proton.Me</a></p>
+							</div>
+							<div class="col-md-3">
+								<p><span><i class="icon-globe"></i></span> <a href="https://elns.info">https://elns.info</a></p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="row">
+							<div class="col-md-6">
+								<div id="map" class="colorlib-map"></div>
+							</div>
+							<div class="col-md-6">
+								<h2 class="heading-2">Get In Touch</h2>
+								<form action="{% url 'home:contact'%}" method="post"> {% csrf_token %}
+									<div class="row form-group">
+										<div class="col-md-6">
+											<label for="name">Name</label>
+											<input type="text" name="name" id="name" class="form-control" placeholder="Your name">
+										</div>
+									</div>
+
+									<div class="row form-group">
+										<div class="col-md-12">
+											<label for="email">Email</label>
+											<input type="email" name="email" id="email" class="form-control" placeholder="Your email address">
+										</div>
+									</div>
+
+									<div class="row form-group">
+										<div class="col-md-12">
+											<label for="subject">Subject</label>
+											<input type="text" name="subject" id="subject" class="form-control" placeholder="Your subject of this message">
+										</div>
+									</div>
+
+									<div class="row form-group">
+										<div class="col-md-12">
+											<label for="message">Message</label>
+											<textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Say something about us"></textarea>
+										</div>
+									</div>
+
+									<div class="form-group">
+<!--										<script src='https://www.google.com/recaptcha/api.js'></script>-->
+<!--										<div class="g-recaptcha" data-sitekey="{{ PUBLIC_KEY }}"></div>-->
+										<button type="submit" name="submit"  class="btn btn-primary">Send</button>
+									</div>
+
+								</form>	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endblock content %}
