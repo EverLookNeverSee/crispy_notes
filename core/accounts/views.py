@@ -22,7 +22,9 @@ class CustomLogoutView(LogoutView):
     def dispatch(self, request, *args, **kwargs):
         auth_logout(request)
         if not request.user.is_authenticated:
-            messages.add_message(request, messages.INFO, "You have successfully logged out.")
+            messages.add_message(
+                request, messages.INFO, "You have successfully logged out."
+            )
         next_page = self.get_next_page()
         if next_page:
             return HttpResponseRedirect(next_page)
