@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     "django.contrib.humanize",
     "home",
+    "accounts",
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,21 @@ STATICFILES_DIRS = [BASE_DIR / "statics"]
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = "accounts.User"
+
+LOGIN_URL = 'accounts:login'
+LOGIN_REDIRECT_URL = 'home:index'
+LOGOUT_REDIRECT_URL = "home:index"
+
+# Authentication Backends
+AUTHENTICATION_BACKENDS = ["accounts.backends.EmailBackend"]
+
+
+# Email configuration
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_USE_TLS = False
+EMAIL_HOST = "smtp4dev"
+EMAIL_HOST_USER = ""
+EMAIL_HOST_PASSWORD = ""
+EMAIL_PORT = 25
