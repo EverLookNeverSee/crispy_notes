@@ -62,24 +62,21 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-xs-2">
-							<div id="colorlib-logo"><a href="index.html">Stuff</a></div>
+							<div id="colorlib-logo"><a href="{% url 'home:index' %}">Crispy Notes</a></div>
 						</div>
 						<div class="col-xs-10 text-right menu-1">
 							<ul>
-								<li class="active"><a href="index.html">Home</a></li>
-								<li class="has-dropdown">
-									<a href="blog.html">Blog</a>
-									<ul class="dropdown">
-										<li><a href="single.html">Blog Single</a></li>
-										<li><a href="#">Video</a></li>
-										<li><a href="#">Read</a></li>
-										<li><a href="#">Lifestyle</a></li>
-									</ul>
-								</li>
-								<li><a href="event.html">Event</a></li>
-								<li><a href="travel.html">Travel</a></li>
-								<li><a href="about.html">About Me</a></li>
-								<li><a href="contact.html">Contact</a></li>
+								<li><a href="{% url 'home:index' %}">Home</a></li>
+								<li><a href="#">Blog</a></li>
+								<li><a href="{% url 'home:about' %}">About Me</a></li>
+								<li><a href="{% url 'home:contact' %}">Contact</a></li>
+								{% if request.user.is_authenticated %}
+								<li class="active"><a href="#">Logged in as {{ request.user.email}}</a></li>
+								<li class="active"><a href="{% url 'accounts:logout' %}">Logout</a></li>
+								{% else %}
+								<li class="active"><a href="{% url 'accounts:login' %}">Login</a></li>
+								<li class="active"><a href="{% url 'accounts:signup' %}">SignUp</a></li>
+								{% endif %}
 							</ul>
 						</div>
 					</div>
@@ -87,12 +84,19 @@
 			</div>
 		</nav>
 
+		<div>
+			{% if messages %}
+				{% for message in messages %}
+					<div class="alert alert-{{ message.tags }}">
+						{{ message }}
+					</div>
+				{% endfor %}
+			{% endif %}
+		</div>
 
 		{% block content %}
 
 		{% endblock content %}
-
-
 
 		<div id="colorlib-instagram">
 			<div class="row">
