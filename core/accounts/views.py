@@ -2,12 +2,19 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth import login, logout as auth_logout
 from django.shortcuts import redirect
 from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+from django.core.mail import EmailMessage
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_text, force_bytes
 from .forms import UserRegistrationForm
+from .utilities import generate_token, EmailThread
+from .models import User
 
 
 class CustomLoginView(SuccessMessageMixin, LoginView):
