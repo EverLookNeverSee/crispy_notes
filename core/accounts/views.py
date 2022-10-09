@@ -7,12 +7,19 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+from django.urls import reverse_lazy
 from django.core.mail import EmailMessage
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_text, force_bytes
-from .forms import UserRegistrationForm
+from django.contrib.auth.views import (
+    PasswordResetView,
+    PasswordResetDoneView,
+    PasswordResetConfirmView,
+    PasswordResetCompleteView
+)
+from .forms import UserRegistrationForm, EmailValidationOnForgotPassword
 from .utilities import generate_token, EmailThread
 from .models import User
 
@@ -82,3 +89,24 @@ class UserVerificationView(UpdateView):
             return redirect("/")
         messages.add_message(request, messages.ERROR, "Something went wrong!")
         return redirect("/")
+
+
+class CustomPasswordResetView(PasswordResetView):
+    template_name = "registration/password_reset.html"
+    email_template_name = "registration/password_reset_email.html"
+    success_url = reverse_lazy("accounts:password_reset_done")
+    form_class = EmailValidationOnForgotPassword
+
+
+class CustomPasswordResetDoneView(PasswordResetDoneView):
+    template_name = "registration/password_reset_done.html"
+
+
+class CustomPasswordResetConfirmView(PasswordResetConfirmView):
+    template_name = "registration/password_reset_confirm.html"
+    success_url = reverse_lazy("accounts:password_reset_complete")
+
+
+class CustomPasswordResetCompleteView(PasswordResetCompleteView):
+    template_name = "registration/password_reset_complete.html"
+    title = "Password reset completed."
