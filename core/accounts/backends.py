@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.backends import ModelBackend
+from django.contrib import messages
 
 
 class EmailBackend(ModelBackend):
@@ -8,8 +9,10 @@ class EmailBackend(ModelBackend):
         try:
             user = UserModel.objects.get(email=username)
         except UserModel.DoesNotExist:
+            messages.add_message(request, messages.ERROR, "User does not exist")
             return None
         else:
             if user.check_password(password):
                 return user
+        messages.add_message(request, messages.ERROR, "Invalid credentials")
         return None
