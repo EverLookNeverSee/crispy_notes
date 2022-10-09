@@ -46,5 +46,21 @@ class CustomSignupView(SuccessMessageMixin, CreateView):
 
     def form_valid(self, form):
         user = form.save()
+        body = render_to_string(
+            template_name="registration/verify_account.html",
+            context={
+                "user": user.email,
+                "domain": get_current_site(self.request),
+                "uidb64": urlsafe_base64_encode(force_bytes(user)),
+                "token": generate_token.make_token(user),
+            },
+        )
+        email_obj = EmailMessage(
+            subject="Verify your account",
+            body=body,
+            from_email="no-reply@crispy-notes.com",
+            to=[user.email],
+        )
+        EmailThread(email_obj).run()
         login(self.request, user)
         return redirect("/")
