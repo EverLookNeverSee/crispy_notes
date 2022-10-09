@@ -17,7 +17,7 @@ from django.contrib.auth.views import (
     PasswordResetView,
     PasswordResetDoneView,
     PasswordResetConfirmView,
-    PasswordResetCompleteView
+    PasswordResetCompleteView,
 )
 from .forms import UserRegistrationForm, EmailValidationOnForgotPassword
 from .utilities import generate_token, EmailThread
