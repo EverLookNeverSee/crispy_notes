@@ -64,3 +64,21 @@ class CustomSignupView(SuccessMessageMixin, CreateView):
         EmailThread(email_obj).run()
         login(self.request, user)
         return redirect("/")
+
+
+class UserVerificationView(UpdateView):
+    def get(self, request, *args, **kwargs):
+        try:
+            uid = force_text(urlsafe_base64_decode(kwargs.get("uidb64")))
+            user = User.objects.get(email=uid)
+        except User.DoesNotExist:
+            user = None
+        if user and generate_token.check_token(user, kwargs.get("token")):
+            user.is_verified = True
+            user.save()
+            messages.add_message(
+                request, messages.SUCCESS, "Your email verified successfully."
+            )
+            return redirect("/")
+        messages.add_message(request, messages.ERROR, "Something went wrong!")
+        return redirect("/")
