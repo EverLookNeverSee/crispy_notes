@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # apps
     "home",
     "accounts",
+    "blog",
     # other
     "django_celery_beat",
 ]
