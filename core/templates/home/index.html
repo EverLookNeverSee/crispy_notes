@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 {% block content %}
 
 <aside id="colorlib-hero">
 			<div class="flexslider">
 				<ul class="slides">
-			   	<li style="background-image: url({% static 'assets/images/img_bg_1.jpg' %});">
+					{% for post in top_viewed_posts %}
+			   	<li style="background-image: url({{post.image.url}})">
 			   		<div class="overlay"></div>
 			   		<div class="container">
 			   			<div class="row">
@@ -13,74 +15,21 @@
 				   				<div class="slider-text-inner">
 				   					<div class="desc">
 				   						<p class="meta">
-												<span class="cat"><a href="#">Events</a></span>
-												<span class="date">20 March 2018</span>
-												<span class="pos">By <a href="#">Rich</a></span>
+											{% for cat in post.category.all %}
+											<span class="pos"><a href="#">{{ cat.name }}</a></span>
+											{% endfor %}
+												<span class="date">{{ post.created_at | naturaltime }}</span>
+												<span class="views">views <strong>{{ post.n_views }}</strong></span>
+												<span class="pos">By <a href="#">{{ post.author.first_name }}</a></span>
 											</p>
-					   					<h1>How a website designer began customizing and designing</h1>
+					   					<h1>{{ post.title }}</h1>
 				   					</div>
 				   				</div>
 				   			</div>
 				   		</div>
 			   		</div>
 			   	</li>
-			   	<li style="background-image: url({% static 'assets/images/img_bg_2.jpg' %});">
-			   		<div class="overlay"></div>
-			   		<div class="container">
-			   			<div class="row">
-				   			<div class="col-md-6 col-md-pull-3 col-sm-12 col-xs-12 col-md-offset-3 slider-text">
-				   				<div class="slider-text-inner">
-				   					<div class="desc">
-				   						<p class="meta">
-												<span class="cat"><a href="#">Events</a></span>
-												<span class="date">20 March 2018</span>
-												<span class="pos">By <a href="#">Rich</a></span>
-											</p>
-					   					<h1>How a website designer began customizing and designing</h1>
-				   					</div>
-				   				</div>
-				   			</div>
-				   		</div>
-			   		</div>
-			   	</li>
-			   	<li style="background-image: url({% static 'assets/images/img_bg_3.jpg' %});">
-			   		<div class="overlay"></div>
-			   		<div class="container">
-			   			<div class="row">
-				   			<div class="col-md-6 col-md-pull-3 col-sm-12 col-xs-12 col-md-offset-3 slider-text">
-				   				<div class="slider-text-inner">
-				   					<div class="desc">
-				   						<p class="meta">
-												<span class="cat"><a href="#">Events</a></span>
-												<span class="date">20 March 2018</span>
-												<span class="pos">By <a href="#">Rich</a></span>
-											</p>
-					   					<h1>How a website designer began customizing and designing</h1>
-				   					</div>
-				   				</div>
-				   			</div>
-				   		</div>
-			   		</div>
-			   	</li>
-			   	<li style="background-image: url({% static 'assets/images/img_bg_4.jpg' %});">
-			   		<div class="overlay"></div>
-			   		<div class="container">
-			   			<div class="row">
-				   			<div class="col-md-6 col-md-pull-3 col-sm-12 col-xs-12 col-md-offset-3 slider-text">
-				   				<div class="slider-text-inner">
-				   					<div class="desc">
-				   						<p class="meta">
-												<span class="cat"><a href="#">Events</a></span>
-												<span class="date">20 March 2018</span>
-												<span class="pos">By <a href="#">Rich</a></span>
-											</p>
-					   					<h1>Top 5 Places To Start Your Vacation This Summer</h1>
-				   					</div>
-				   				</div>
-				   			</div>
-				   		</div>
-			   		</div>
-			   	</li>
+					{% endfor %}
 			  	</ul>
 		  	</div>
 		</aside>
@@ -91,32 +40,38 @@
 					<div class="col-md-4">
 						<div class="blog-entry">
 							<div class="blog-img">
-								<a href="blog.html"><img src="{% static 'assets/images/blog-1.jpg' %}" class="img-responsive" alt="html5 bootstrap template"></a>
+								<a href="blog.html"><img src="{{ normal_posts.0.image.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
 							</div>
 							<div class="desc">
 								<p class="meta">
-									<span class="cat"><a href="#">Events</a></span>
-									<span class="date">20 March 2018</span>
-									<span class="pos">By <a href="#">Rich</a></span>
-								</p>
-								<h2><a href="blog.html">Recipe for your site</a></h2>
-								<p>A small river named Duden flows by their place and supplies it with the necessary </p>
+											{% for cat in normal_posts.0.category.all %}
+											<span class="pos"><a href="#">{{ cat.name }}</a></span>
+											{% endfor %}
+												<span class="date">{{ normal_posts.0.created_at | naturaltime }}</span>
+												<span class="views">views <strong>{{ normal_posts.0.n_views }}</strong></span>
+												<span class="pos">By <a href="#">{{ normal_posts.0.author.first_name }}</a></span>
+											</p>
+								<h2><a href="blog.html">{{normal_posts.0.title}}</a></h2>
+								<p>{{normal_posts.0.content|truncatewords:15 }}</p>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="blog-entry">
 							<div class="blog-img">
-								<a href="blog.html"><img src="{% static 'assets/images/blog-2.jpg' %}" class="img-responsive" alt="html5 bootstrap template"></a>
+								<a href="blog.html"><img src="{{ normal_posts.1.image.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
 							</div>
 							<div class="desc">
 								<p class="meta">
-									<span class="cat"><a href="#">Read</a></span>
-									<span class="date">20 March 2018</span>
-									<span class="pos">By <a href="#">Rich</a></span>
-								</p>
-								<h2><a href="blog.html">Recipe for your site</a></h2>
-								<p>A small river named Duden flows by their place and supplies it with the necessary </p>
+											{% for cat in normal_posts.1.category.all %}
+											<span class="pos"><a href="#">{{ cat.name }}</a></span>
+											{% endfor %}
+												<span class="date">{{ normal_posts.1.created_at | naturaltime }}</span>
+												<span class="views">views <strong>{{ normal_posts.1.n_views }}</strong></span>
+												<span class="pos">By <a href="#">{{ normal_posts.1.author.first_name }}</a></span>
+											</p>
+								<h2><a href="blog.html">{{normal_posts.1.title}}</a></h2>
+								<p>{{normal_posts.1.content|truncatewords:9 }}</p>
 							</div>
 						</div>
 					</div>
@@ -125,71 +80,24 @@
 							<div class="blog-slider">
 								<div class="owl-carousel">
 									<div class="item">
-										<a href="blog.html" class="image-popup-link"><img src="{% static 'assets/images/blog-3.jpg' %}" class="img-responsive" alt="html5 bootstrap template"></a>
+										<a href="blog.html" class="image-popup-link"><img src="{{ normal_posts.2.image.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
 									</div>
 									<div class="item">
-										<a href="blog.html" class="image-popup-link"><img src="{% static 'assets/images/blog-4.jpg' %}" class="img-responsive" alt="html5 bootstrap template"></a>
+										<a href="blog.html" class="image-popup-link"><img src="{{ normal_posts.2.image.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
 									</div>
 								</div>
 							</div>
 							<div class="desc">
 								<p class="meta">
-									<span class="cat"><a href="#">Travel</a></span>
-									<span class="date">20 March 2018</span>
-									<span class="pos">By <a href="#">Rich</a></span>
-								</p>
-								<h2><a href="blog.html">Recipe for your site</a></h2>
-								<p>A small river named Duden flows by their place and supplies it with the necessary </p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row row-pb-md">
-					<div class="col-md-4">
-						<div class="blog-entry">
-							<div class="blog-img">
-								<a href="blog.html"><img src="{% static 'assets/images/blog-4.jpg' %}" class="img-responsive" alt="html5 bootstrap template"></a>
-							</div>
-							<div class="desc">
-								<p class="meta">
-									<span class="cat"><a href="#">Lifestyle</a></span>
-									<span class="date">20 March 2018</span>
-									<span class="pos">By <a href="#">Rich</a></span>
-								</p>
-								<h2><a href="blog.html">Recipe for your site</a></h2>
-								<p>A small river named Duden flows by their place and supplies it with the necessary </p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="blog-entry">
-							<div class="blog-img">
-								<a href="blog.html"><img src="{% static 'assets/images/blog-5.jpg' %}" class="img-responsive" alt="html5 bootstrap template"></a>
-							</div>
-							<div class="desc">
-								<p class="meta">
-									<span class="cat"><a href="#">Events</a></span>
-									<span class="date">20 March 2018</span>
-									<span class="pos">By <a href="#">Rich</a></span>
-								</p>
-								<h2><a href="blog.html">Recipe for your site</a></h2>
-								<p>A small river named Duden flows by their place and supplies it with the necessary </p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="blog-entry">
-							<div class="blog-img">
-								<a href="blog.html"><img src="{% static 'assets/images/blog-6.jpg' %}" class="img-responsive" alt="html5 bootstrap template"></a>
-							</div>
-							<div class="desc">
-								<p class="meta">
-									<span class="cat"><a href="#">Events</a></span>
-									<span class="date">20 March 2018</span>
-									<span class="pos">By <a href="#">Rich</a></span>
-								</p>
-								<h2><a href="blog.html">Recipe for your site</a></h2>
-								<p>A small river named Duden flows by their place and supplies it with the necessary </p>
+											{% for cat in normal_posts.2.category.all %}
+											<span class="pos"><a href="#">{{ cat.name }}</a></span>
+											{% endfor %}
+												<span class="date">{{ normal_posts.2.created_at | naturaltime }}</span>
+												<span class="views">views <strong>{{ normal_posts.2.n_views }}</strong></span>
+												<span class="pos">By <a href="#">{{ normal_posts.2.author.first_name }}</a></span>
+											</p>
+								<h2><a href="blog.html">{{ normal_posts.2.title }}</a></h2>
+								<p>{{ normal_posts.2.content|truncatewords:10 }}</p>
 							</div>
 						</div>
 					</div>
@@ -198,85 +106,41 @@
 					<div class="col-md-8">
 						<div class="blog-entry">
 							<div class="blog-img">
-								<div class="video colorlib-video" style="background-image: url({% static 'assets/images/blog-8.jpg' %});">
-									<a href="https://vimeo.com/channels/staffpicks/93951774" class="popup-vimeo"><i class="icon-play"></i></a>
+								<div class="video colorlib-video" style="background-image: url({{ normal_posts.3.image.url }});">
+									<a href="https://www.youtube.com/watch?v=PtQiiknWUcI" class="popup-vimeo"><i class="icon-play"></i></a>
 									<div class="overlay"></div>
 								</div>
 							</div>
 							<div class="desc">
 								<p class="meta">
-									<span class="cat"><a href="#">Watch</a></span>
-									<span class="date">20 March 2018</span>
-									<span class="pos">By <a href="#">Rich</a></span>
-								</p>
-								<h2><a href="blog.html">Watch our video how to make website</a></h2>
-								<p>A small river named Duden flows by their place and supplies it with the necessary </p>
+											{% for cat in normal_posts.3.category.all %}
+											<span class="pos"><a href="#">{{ cat.name }}</a></span>
+											{% endfor %}
+												<span class="date">{{ normal_posts.3.created_at | naturaltime }}</span>
+												<span class="views">views <strong>{{ normal_posts.3.n_views }}</strong></span>
+												<span class="pos">By <a href="#">{{ normal_posts.3.author.first_name }}</a></span>
+											</p>
+								<h2><a href="blog.html">{{ normal_posts.3.title }}</a></h2>
+								<p>{{ normal_posts.3.content|truncatewords:25 }}</p>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="blog-entry">
 							<div class="blog-img">
-								<a href="blog.html"><img src="{% static 'assets/images/blog-7.jpg' %}" class="img-responsive" alt="html5 bootstrap template"></a>
+								<a href="blog.html"><img src="{{ normal_posts.4.image.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
 							</div>
 							<div class="desc">
 								<p class="meta">
-									<span class="cat"><a href="#">Events</a></span>
-									<span class="date">20 March 2018</span>
-									<span class="pos">By <a href="#">Rich</a></span>
-								</p>
-								<h2><a href="blog.html">Recipe for your site</a></h2>
-								<p>A small river named Duden flows by their place and supplies it with the necessary </p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row row-pb-md">
-					<div class="col-md-4">
-						<div class="blog-entry">
-							<div class="blog-img">
-								<a href="blog.html"><img src="{% static 'assets/images/blog-9.jpg' %}" class="img-responsive" alt="html5 bootstrap template"></a>
-							</div>
-							<div class="desc">
-								<p class="meta">
-									<span class="cat"><a href="#">Events</a></span>
-									<span class="date">20 March 2018</span>
-									<span class="pos">By <a href="#">Rich</a></span>
-								</p>
-								<h2><a href="blog.html">Recipe for your site</a></h2>
-								<p>A small river named Duden flows by their place and supplies it with the necessary </p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="blog-entry">
-							<div class="blog-img">
-								<a href="blog.html"><img src="{% static 'assets/images/blog-10.jpg' %}" class="img-responsive" alt="html5 bootstrap template"></a>
-							</div>
-							<div class="desc">
-								<p class="meta">
-									<span class="cat"><a href="#">Events</a></span>
-									<span class="date">20 March 2018</span>
-									<span class="pos">By <a href="#">Rich</a></span>
-								</p>
-								<h2><a href="blog.html">Recipe for your site</a></h2>
-								<p>A small river named Duden flows by their place and supplies it with the necessary </p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="blog-entry">
-							<div class="blog-img">
-								<a href="blog.html"><img src="{% static 'assets/images/blog-11.jpg' %}" class="img-responsive" alt="html5 bootstrap template"></a>
-							</div>
-							<div class="desc">
-								<p class="meta">
-									<span class="cat"><a href="#">Events</a></span>
-									<span class="date">20 March 2018</span>
-									<span class="pos">By <a href="#">Rich</a></span>
-								</p>
-								<h2><a href="blog.html">Recipe for your site</a></h2>
-								<p>A small river named Duden flows by their place and supplies it with the necessary </p>
+											{% for cat in normal_posts.4.category.all %}
+											<span class="pos"><a href="#">{{ cat.name }}</a></span>
+											{% endfor %}
+												<span class="date">{{ normal_posts.4.created_at | naturaltime }}</span>
+												<span class="views">views <strong>{{ normal_posts.4.n_views }}</strong></span>
+												<span class="pos">By <a href="#">{{ normal_posts.4.author.first_name }}</a></span>
+											</p>
+								<h2><a href="blog.html">{{ normal_posts.4.title }}</a></h2>
+								<p>{{ normal_posts.4.content|truncatewords:12 }}</p>
 							</div>
 						</div>
 					</div>
@@ -285,46 +149,40 @@
 					<div class="col-md-4">
 						<div class="blog-entry">
 							<div class="blog-img">
-								<a href="blog.html"><img src="{% static 'assets/images/blog-12.jpg' %}" class="img-responsive" alt="html5 bootstrap template"></a>
+								<a href="blog.html"><img src="{{ normal_posts.5.image.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
 							</div>
 							<div class="desc">
 								<p class="meta">
-									<span class="cat"><a href="#">Events</a></span>
-									<span class="date">20 March 2018</span>
-									<span class="pos">By <a href="#">Rich</a></span>
-								</p>
-								<h2><a href="blog.html">Recipe for your site</a></h2>
-								<p>A small river named Duden flows by their place and supplies it with the necessary </p>
+											{% for cat in normal_posts.5.category.all %}
+											<span class="pos"><a href="#">{{ cat.name }}</a></span>
+											{% endfor %}
+												<span class="date">{{ normal_posts.5.created_at | naturaltime }}</span>
+												<span class="views">views <strong>{{ normal_posts.5.n_views }}</strong></span>
+												<span class="pos">By <a href="#">{{ normal_posts.5.author.first_name }}</a></span>
+											</p>
+								<h2><a href="blog.html">{{ normal_posts.5.title }}</a></h2>
+								<p>{{ normal_posts.5.content|truncatewords:15 }}</p>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-8">
 						<div class="blog-entry">
 							<div class="blog-img">
-								<a href="blog.html"><img src="{% static 'assets/images/blog-13.jpg' %}" class="img-responsive" alt="html5 bootstrap template"></a>
+								<a href="blog.html"><img src="{{ normal_posts.6.image.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
 							</div>
 							<div class="desc">
 								<p class="meta">
-									<span class="cat"><a href="#">Events</a></span>
-									<span class="date">20 March 2018</span>
-									<span class="pos">By <a href="#">Rich</a></span>
-								</p>
-								<h2><a href="blog.html">Recipe for your site</a></h2>
-								<p>A small river named Duden flows by their place and supplies it with the necessary </p>
+											{% for cat in normal_posts.6.category.all %}
+											<span class="pos"><a href="#">{{ cat.name }}</a></span>
+											{% endfor %}
+												<span class="date">{{ normal_posts.6.created_at | naturaltime }}</span>
+												<span class="views">views <strong>{{ normal_posts.6.n_views }}</strong></span>
+												<span class="pos">By <a href="#">{{ normal_posts.6.author.first_name }}</a></span>
+											</p>
+								<h2><a href="blog.html">{{ normal_posts.6.title }}</a></h2>
+								<p>{{ normal_posts.6.content|truncatewords:20 }}</p>
 							</div>
 						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12 text-center">
-						<ul class="pagination">
-							<li class="disabled"><a href="#">&laquo;</a></li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">&raquo;</a></li>
-						</ul>
 					</div>
 				</div>
 			</div>
