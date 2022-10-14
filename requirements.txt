@@ -6,6 +6,7 @@ sqlparse==0.4.3
 pillow==9.2.0
 black==22.8.0
 six==1.16.0
+FAKER==15.1.1
 
 celery==5.2.7
 redis==4.3.4
