@@ -1,0 +1,13 @@
+{% load blog_tags %}
+{% load humanize %}
+<h2>Recommended Posts</h2>
+						{% for post in frp %}
+						<div class="f-blog">
+							<a href="{% url 'blog:post-detail' pk=post.id %}" class="blog-img" style="background-image: url({{ post.image.url }});">
+							</a>
+							<div class="desc">
+								<h3><a href="{% url 'blog:post-detail' pk=post.id %}">{{ post.title }}</a></h3>
+								<p class="admin"><span>{{ post.created_at|naturaltime}}</span></p>
+							</div>
+						</div>
+						{% endfor %}
