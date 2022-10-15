@@ -21,21 +21,21 @@
 					<div class="col-md-4">
 						<div class="blog-entry">
 							<div class="blog-img">
-								<a href="blog.html"><img src="{{ post.image.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
+								<a href="{% url 'blog:post-detail' pk=post.id %}"><img src="{{ post.image.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
 							</div>
 							<div class="desc">
 								<p>
 									{% for cat in post.category.all %}
-									<span class="cat"><a href="">{{ cat.name }}</a></span>{% if not forloop.last %},{% endif %}
+									<span class="cat"><a href="{% url 'blog:category' cat_name=cat %}">{{ cat.name }}</a></span>{% if not forloop.last %},{% endif %}
 									{% endfor %}
 									<span>|</span>
 									<span class="date">{{ post.publish_date|naturaltime }}</span>
 									<span>|</span>
-									<span class="pos">By <a href="">{{ post.author.first_name }}</a></span>
+									<span class="pos">By <a href="{% url 'blog:author' author_email=post.author %}">{{ post.author.first_name }}</a></span>
 									<span>|</span>
 									<span class="pos">{{ post.n_views }} views</span>
 								</p>
-								<h2><a href="">{{ post.title|truncatewords:5 }}</a></h2>
+								<h2><a href="{% url 'blog:post-detail' pk=post.id %}">{{ post.title|truncatewords:5 }}</a></h2>
 								<p>{{ post.content|truncatewords:5|safe }}</p>
 							</div>
 						</div>
@@ -62,5 +62,6 @@
 					</div>
 				</div>
 			</div>
+		</div>
 		</div>
 {% endblock content %}
