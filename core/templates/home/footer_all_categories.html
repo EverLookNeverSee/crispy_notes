@@ -1,0 +1,7 @@
+{% load blog_tags %}
+<h2>Categories</h2>
+<p class="tags">
+	{% for cat in categories %}
+		<span><a href="{% url 'blog:category' cat_name=cat.name %}"><i class="icon-tag"></i>  {{ cat.name }}</a></span>
+	{% endfor %}
+</p>

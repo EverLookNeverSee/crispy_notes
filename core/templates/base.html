@@ -1,4 +1,5 @@
 {% load static %}
+{% load blog_tags %}
 {% load humanize %}
 <!DOCTYPE HTML>
 <html>
@@ -106,21 +107,21 @@
 			</div>
 			<div class="row">
 				<div class="instagram-entry">
-					<a href="#" class="instagram text-center" style="background-image: url({% static 'assets/images/gallery-1.jpg' %});">
+					<a href="https://instagram.com/" class="instagram text-center" style="background-image: url({% static 'assets/images/gallery-1.jpg' %});">
 					</a>
-					<a href="#" class="instagram text-center" style="background-image: url({% static 'assets/images/gallery-2.jpg' %});">
+					<a href="https://instagram.com/" class="instagram text-center" style="background-image: url({% static 'assets/images/gallery-2.jpg' %});">
 					</a>
-					<a href="#" class="instagram text-center" style="background-image: url({% static 'assets/images/gallery-3.jpg' %});">
+					<a href="https://instagram.com/" class="instagram text-center" style="background-image: url({% static 'assets/images/gallery-3.jpg' %});">
 					</a>
-					<a href="#" class="instagram text-center" style="background-image: url({% static 'assets/images/gallery-4.jpg' %});">
+					<a href="https://instagram.com/" class="instagram text-center" style="background-image: url({% static 'assets/images/gallery-4.jpg' %});">
 					</a>
-					<a href="#" class="instagram text-center" style="background-image: url({% static 'assets/images/gallery-5.jpg' %});">
+					<a href="https://instagram.com/" class="instagram text-center" style="background-image: url({% static 'assets/images/gallery-5.jpg' %});">
 					</a>
-					<a href="#" class="instagram text-center" style="background-image: url({% static 'assets/images/gallery-6.jpg' %});">
+					<a href="https://instagram.com/" class="instagram text-center" style="background-image: url({% static 'assets/images/gallery-6.jpg' %});">
 					</a>
-					<a href="#" class="instagram text-center" style="background-image: url({% static 'assets/images/gallery-7.jpg' %});">
+					<a href="https://instagram.com/" class="instagram text-center" style="background-image: url({% static 'assets/images/gallery-7.jpg' %});">
 					</a>
-					<a href="#" class="instagram text-center" style="background-image: url({% static 'assets/images/gallery-8.jpg' %});">
+					<a href="https://instagram.com/" class="instagram text-center" style="background-image: url({% static 'assets/images/gallery-8.jpg' %});">
 					</a>
 				</div>
 			</div>
@@ -140,25 +141,10 @@
 						</p>
 					</div>
 					<div class="col-md-3">
-						<h2>Recommended Posts</h2>
-						{% for post in recommended_posts %}
-						<div class="f-blog">
-							<a href="blog.html" class="blog-img" style="background-image: url({{ post.image.url }});">
-							</a>
-							<div class="desc">
-								<h3><a href="blog.html">{{ post.title }}</a></h3>
-								<p class="admin"><span>{{ post.created_at|naturaltime}}</span></p>
-							</div>
-						</div>
-						{% endfor %}
+						{% footer_recommended_posts %}
 					</div>
 					<div class="col-md-3">
-						<h2>Tags</h2>
-						<p class="tags">
-							{% for cat in categories %}
-							<span><a href="#"><i class="icon-tag"></i>  {{ cat.name }}</a></span>
-							{% endfor %}
-						</p>
+						{% footer_all_categories %}
 					</div>
 				</div>
 				<div class="row">
