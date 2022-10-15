@@ -16,13 +16,13 @@
 				   					<div class="desc">
 				   						<p class="meta">
 											{% for cat in post.category.all %}
-											<span class="pos"><a href="#">{{ cat.name }}</a></span>
+											<span class="pos"><a href="{% url 'blog:category' cat_name=cat %}">{{ cat.name }}</a></span>
 											{% endfor %}
 												<span class="date">{{ post.created_at | naturaltime }}</span>
 												<span class="views">views <strong>{{ post.n_views }}</strong></span>
-												<span class="pos">By <a href="#">{{ post.author.first_name }}</a></span>
+												<span class="pos">By <a href="{% url 'blog:author' author_email=post.author %}">{{ post.author.first_name }}</a></span>
 											</p>
-					   					<h1>{{ post.title }}</h1>
+					   					<h1><a href="{% url 'blog:post-detail' pk=post.id %}">{{ post.title }}</a></h1>
 				   					</div>
 				   				</div>
 				   			</div>
@@ -40,18 +40,18 @@
 					<div class="col-md-4">
 						<div class="blog-entry">
 							<div class="blog-img">
-								<a href="blog.html"><img src="{{ normal_posts.0.image.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
+								<a href="{% url 'blog:post-detail' pk=normal_posts.0.id %}"><img src="{{ normal_posts.0.image.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
 							</div>
 							<div class="desc">
 								<p class="meta">
 											{% for cat in normal_posts.0.category.all %}
-											<span class="pos"><a href="#">{{ cat.name }}</a></span>
+											<span class="pos"><a href="{% url 'blog:category' cat_name=cat %}">{{ cat.name }}</a></span>
 											{% endfor %}
 												<span class="date">{{ normal_posts.0.created_at | naturaltime }}</span>
 												<span class="views">views <strong>{{ normal_posts.0.n_views }}</strong></span>
-												<span class="pos">By <a href="#">{{ normal_posts.0.author.first_name }}</a></span>
+												<span class="pos">By <a href="{% url 'blog:author' author_email=normal_posts.0.author %}">{{ normal_posts.0.author.first_name }}</a></span>
 											</p>
-								<h2><a href="blog.html">{{normal_posts.0.title}}</a></h2>
+								<h2><a href="{% url 'blog:post-detail' pk=normal_posts.0.id %}">{{normal_posts.0.title}}</a></h2>
 								<p>{{normal_posts.0.content|truncatewords:15 }}</p>
 							</div>
 						</div>
@@ -59,18 +59,18 @@
 					<div class="col-md-4">
 						<div class="blog-entry">
 							<div class="blog-img">
-								<a href="blog.html"><img src="{{ normal_posts.1.image.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
+								<a href="{% url 'blog:post-detail' pk=normal_posts.1.id %}"><img src="{{ normal_posts.1.image.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
 							</div>
 							<div class="desc">
 								<p class="meta">
 											{% for cat in normal_posts.1.category.all %}
-											<span class="pos"><a href="#">{{ cat.name }}</a></span>
+											<span class="pos"><a href="{% url 'blog:category' cat_name=cat %}">{{ cat.name }}</a></span>
 											{% endfor %}
 												<span class="date">{{ normal_posts.1.created_at | naturaltime }}</span>
 												<span class="views">views <strong>{{ normal_posts.1.n_views }}</strong></span>
-												<span class="pos">By <a href="#">{{ normal_posts.1.author.first_name }}</a></span>
+												<span class="pos">By <a href="{% url 'blog:author' author_email=normal_posts.1.author %}">{{ normal_posts.1.author.first_name }}</a></span>
 											</p>
-								<h2><a href="blog.html">{{normal_posts.1.title}}</a></h2>
+								<h2><a href="{% url 'blog:post-detail' pk=normal_posts.1.id %}">{{normal_posts.1.title}}</a></h2>
 								<p>{{normal_posts.1.content|truncatewords:9 }}</p>
 							</div>
 						</div>
@@ -80,23 +80,23 @@
 							<div class="blog-slider">
 								<div class="owl-carousel">
 									<div class="item">
-										<a href="blog.html" class="image-popup-link"><img src="{{ normal_posts.2.image.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
+										<a href="{% url 'blog:post-detail' pk=normal_posts.2.id %}" class="image-popup-link"><img src="{{ normal_posts.2.image.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
 									</div>
 									<div class="item">
-										<a href="blog.html" class="image-popup-link"><img src="{{ normal_posts.2.image.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
+										<a href="{% url 'blog:post-detail' pk=normal_posts.2.id %}" class="image-popup-link"><img src="{{ normal_posts.2.image.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
 									</div>
 								</div>
 							</div>
 							<div class="desc">
 								<p class="meta">
 											{% for cat in normal_posts.2.category.all %}
-											<span class="pos"><a href="#">{{ cat.name }}</a></span>
+											<span class="pos"><a href="{% url 'blog:category' cat_name=cat %}">{{ cat.name }}</a></span>
 											{% endfor %}
 												<span class="date">{{ normal_posts.2.created_at | naturaltime }}</span>
 												<span class="views">views <strong>{{ normal_posts.2.n_views }}</strong></span>
-												<span class="pos">By <a href="#">{{ normal_posts.2.author.first_name }}</a></span>
+												<span class="pos">By <a href="{% url 'blog:author' author_email=normal_posts.2.author %}">{{ normal_posts.2.author.first_name }}</a></span>
 											</p>
-								<h2><a href="blog.html">{{ normal_posts.2.title }}</a></h2>
+								<h2><a href="{% url 'blog:post-detail' pk=normal_posts.2.id %}">{{ normal_posts.2.title }}</a></h2>
 								<p>{{ normal_posts.2.content|truncatewords:10 }}</p>
 							</div>
 						</div>
@@ -114,13 +114,13 @@
 							<div class="desc">
 								<p class="meta">
 											{% for cat in normal_posts.3.category.all %}
-											<span class="pos"><a href="#">{{ cat.name }}</a></span>
+											<span class="pos"><a href="{% url 'blog:category' cat_name=cat %}">{{ cat.name }}</a></span>
 											{% endfor %}
 												<span class="date">{{ normal_posts.3.created_at | naturaltime }}</span>
 												<span class="views">views <strong>{{ normal_posts.3.n_views }}</strong></span>
-												<span class="pos">By <a href="#">{{ normal_posts.3.author.first_name }}</a></span>
+												<span class="pos">By <a href="{% url 'blog:author' author_email=normal_posts.3.author %}">{{ normal_posts.3.author.first_name }}</a></span>
 											</p>
-								<h2><a href="blog.html">{{ normal_posts.3.title }}</a></h2>
+								<h2><a href="{% url 'blog:post-detail' pk=normal_posts.3.id %}">{{ normal_posts.3.title }}</a></h2>
 								<p>{{ normal_posts.3.content|truncatewords:25 }}</p>
 							</div>
 						</div>
@@ -128,18 +128,18 @@
 					<div class="col-md-4">
 						<div class="blog-entry">
 							<div class="blog-img">
-								<a href="blog.html"><img src="{{ normal_posts.4.image.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
+								<a href="{% url 'blog:post-detail' pk=normal_posts.4.id %}"><img src="{{ normal_posts.4.image.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
 							</div>
 							<div class="desc">
 								<p class="meta">
 											{% for cat in normal_posts.4.category.all %}
-											<span class="pos"><a href="#">{{ cat.name }}</a></span>
+											<span class="pos"><a href="{% url 'blog:category' cat_name=cat %}">{{ cat.name }}</a></span>
 											{% endfor %}
 												<span class="date">{{ normal_posts.4.created_at | naturaltime }}</span>
 												<span class="views">views <strong>{{ normal_posts.4.n_views }}</strong></span>
-												<span class="pos">By <a href="#">{{ normal_posts.4.author.first_name }}</a></span>
+												<span class="pos">By <a href="{% url 'blog:author' author_email=normal_posts.4.author %}">{{ normal_posts.4.author.first_name }}</a></span>
 											</p>
-								<h2><a href="blog.html">{{ normal_posts.4.title }}</a></h2>
+								<h2><a href="{% url 'blog:post-detail' pk=normal_posts.4.id %}">{{ normal_posts.4.title }}</a></h2>
 								<p>{{ normal_posts.4.content|truncatewords:12 }}</p>
 							</div>
 						</div>
@@ -149,18 +149,18 @@
 					<div class="col-md-4">
 						<div class="blog-entry">
 							<div class="blog-img">
-								<a href="blog.html"><img src="{{ normal_posts.5.image.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
+								<a href="{% url 'blog:post-detail' pk=normal_posts.5.id %}"><img src="{{ normal_posts.5.image.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
 							</div>
 							<div class="desc">
 								<p class="meta">
 											{% for cat in normal_posts.5.category.all %}
-											<span class="pos"><a href="#">{{ cat.name }}</a></span>
+											<span class="pos"><a href="{% url 'blog:category' cat_name=cat %}">{{ cat.name }}</a></span>
 											{% endfor %}
 												<span class="date">{{ normal_posts.5.created_at | naturaltime }}</span>
 												<span class="views">views <strong>{{ normal_posts.5.n_views }}</strong></span>
-												<span class="pos">By <a href="#">{{ normal_posts.5.author.first_name }}</a></span>
+												<span class="pos">By <a href="{% url 'blog:author' author_email=normal_posts.5.author %}">{{ normal_posts.5.author.first_name }}</a></span>
 											</p>
-								<h2><a href="blog.html">{{ normal_posts.5.title }}</a></h2>
+								<h2><a href="{% url 'blog:post-detail' pk=normal_posts.5.id %}">{{ normal_posts.5.title }}</a></h2>
 								<p>{{ normal_posts.5.content|truncatewords:15 }}</p>
 							</div>
 						</div>
@@ -168,18 +168,18 @@
 					<div class="col-md-8">
 						<div class="blog-entry">
 							<div class="blog-img">
-								<a href="blog.html"><img src="{{ normal_posts.6.image.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
+								<a href="{% url 'blog:post-detail' pk=normal_posts.6.id %}"><img src="{{ normal_posts.6.image.url }}" class="img-responsive" alt="html5 bootstrap template"></a>
 							</div>
 							<div class="desc">
 								<p class="meta">
 											{% for cat in normal_posts.6.category.all %}
-											<span class="pos"><a href="#">{{ cat.name }}</a></span>
+											<span class="pos"><a href="{% url 'blog:category' cat_name=cat %}">{{ cat.name }}</a></span>
 											{% endfor %}
 												<span class="date">{{ normal_posts.6.created_at | naturaltime }}</span>
 												<span class="views">views <strong>{{ normal_posts.6.n_views }}</strong></span>
-												<span class="pos">By <a href="#">{{ normal_posts.6.author.first_name }}</a></span>
+												<span class="pos">By <a href="{% url 'blog:author' author_email=normal_posts.6.author %}">{{ normal_posts.6.author.first_name }}</a></span>
 											</p>
-								<h2><a href="blog.html">{{ normal_posts.6.title }}</a></h2>
+								<h2><a href="{% url 'blog:post-detail' pk=normal_posts.6.id %}">{{ normal_posts.6.title }}</a></h2>
 								<p>{{ normal_posts.6.content|truncatewords:20 }}</p>
 							</div>
 						</div>
