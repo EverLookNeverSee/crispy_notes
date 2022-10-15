@@ -1,4 +1,6 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.db.models import Q
 from .models import Post, Category
 
 
