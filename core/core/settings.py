@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "home",
     "accounts",
     "blog",
+    "comment",
     # other
     "django_celery_beat",
     "django_summernote",
