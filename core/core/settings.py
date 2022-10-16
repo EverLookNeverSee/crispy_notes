@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "blog",
     # other
     "django_celery_beat",
+    "django_summernote",
 ]
 
 MIDDLEWARE = [
@@ -172,4 +173,25 @@ CACHES = {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         },
     }
+}
+
+
+# Django summernote configuration
+X_FRAME_OPTIONS = "SAMEORIGIN"
+SUMMERNOTE_THEME = "bs4"
+SUMMERNOTE_CONFIG = {
+    "iframe": True,
+    "width": "100%",
+    "height": "480",
+    "toolbar": [
+        ["style", ["style"]],
+        ["font", ["bold", "italic", "underline", "clear"]],
+        ["fontname", ["fontname"]],
+        ["color", ["color"]],
+        ["paragraph", ["ul", "ol", "paragraph"]],
+        ["height", ["height"]],
+        ["table", ["table"]],
+        ["insert", ["link", "picture", "video"]],
+        ["view", ["fullscreen", "codeview"]],
+    ],
 }
