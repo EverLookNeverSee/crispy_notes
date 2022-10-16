@@ -32,6 +32,10 @@
 											{% endfor %}
 											<span class="date">{{ post.publish_date|naturaltime}}</span>
 											<span class="pos">By <a href="{% url 'blog:author' author_email=post.author %}">{{ post.author.first_name }} {{ post.author.last_name }}</a></span>
+											{% if post.author.user.email == request.user.email %}
+											<span><a href="{% url 'blog:post-edit' pk=post.id %}">Edit post</a></span>
+											<span><a href="{% url 'blog:post-delete' pk=post.id %}">Delete post</a></span>
+											{% endif %}
 										</p>
 										<h2><a href="{% url 'blog:post-detail' pk=post.id %}">{{ post.title }}</a></h2>
 										<p>
