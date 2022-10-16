@@ -1,0 +1,12 @@
+{% load blog_tags %}
+{% load humanize %}
+{% for post in e_posts %}
+<div class="f-blog">
+    <a href="{% url 'blog:post-detail' pk=post.id %}" class="blog-img" style="background-image: url({{ post.image.url }});">
+    </a>
+    <div class="desc">
+        <h3><a href="{% url 'blog:post-detail' pk=post.id %}">{{ post.title }}</a></h3>
+        <p class="admin"><span>{{ post.publish_date|naturaltime }}</span></p>
+    </div>
+</div>
+{% endfor %}

@@ -28,12 +28,12 @@
 									<div class="desc">
 										<p class="meta">
 											{% for cat in post.category.all %}
-											<span class="cat"><a href="#">{{ cat.name }}</a></span>
+											<span class="cat"><a href="{% url 'blog:category' cat_name=cat %}">{{ cat.name }}</a></span>
 											{% endfor %}
 											<span class="date">{{ post.publish_date|naturaltime}}</span>
-											<span class="pos">By <a href="#">{{ post.author.first_name }} {{ post.author.last_name }}</a></span>
+											<span class="pos">By <a href="{% url 'blog:author' author_email=post.author %}">{{ post.author.first_name }} {{ post.author.last_name }}</a></span>
 										</p>
-										<h2><a href="#">{{ post.title }}</a></h2>
+										<h2><a href="{% url 'blog:post-detail' pk=post.id %}">{{ post.title }}</a></h2>
 										<p>
 											{{ post.content|safe }}
 										</p>
@@ -142,31 +142,8 @@
 								{% blog_single_all_categories %}
 							</div>
 							<div class="side">
-								<h2 class="sidebar-heading">Recent Blog</h2>
-								<div class="f-blog">
-									<a href="blog.html" class="blog-img" style="background-image: url(images/blog-1.jpg);">
-									</a>
-									<div class="desc">
-										<h3><a href="blog.html">Be a designer</a></h3>
-										<p class="admin"><span>25 March 2018</span></p>
-									</div>
-								</div>
-								<div class="f-blog">
-									<a href="blog.html" class="blog-img" style="background-image: url(images/blog-2.jpg);">
-									</a>
-									<div class="desc">
-										<h3><a href="blog.html">How to build website</a></h3>
-										<p class="admin"><span>24 March 2018</span></p>
-									</div>
-								</div>
-								<div class="f-blog">
-									<a href="blog.html" class="blog-img" style="background-image: url(images/blog-3.jpg);">
-									</a>
-									<div class="desc">
-										<h3><a href="blog.html">Create website</a></h3>
-										<p class="admin"><span>23 March 2018</span></p>
-									</div>
-								</div>
+								<h2 class="sidebar-heading">Exclusive posts for you</h2>
+								{% exclusive_posts %}
 							</div>
 						</div>
 					</div>
