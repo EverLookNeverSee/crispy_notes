@@ -20,3 +20,9 @@ def footer_all_categories():
 def blog_single_all_categories():
     all_cats = Category.objects.all()
     return {"categories": all_cats}
+
+
+@register.inclusion_tag(filename="blog/blog-single-exclusive-posts.html")
+def exclusive_posts():
+    e_posts = Post.objects.filter(ok_to_publish=True, login_required=True)[:5]
+    return {"e_posts": e_posts}
