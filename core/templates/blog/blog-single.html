@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load humanize %}
+{% load blog_tags %}
 {% block content %}
 
 <aside id="colorlib-breadcrumbs">
@@ -138,17 +139,7 @@
 							</div>
 							<div class="side">
 								<h2 class="sidebar-heading">Categories</h2>
-								<p>
-									<ul class="category">
-										<li><a href="#"><i class="icon-check"></i> Home</a></li>
-										<li><a href="#"><i class="icon-check"></i> About Me</a></li>
-										<li><a href="#"><i class="icon-check"></i> Blog</a></li>
-										<li><a href="#"><i class="icon-check"></i> Travel</a></li>
-										<li><a href="#"><i class="icon-check"></i> Lifestyle</a></li>
-										<li><a href="#"><i class="icon-check"></i> Fashion</a></li>
-										<li><a href="#"><i class="icon-check"></i> Health</a></li>
-									</ul>
-								</p>
+								{% blog_single_all_categories %}
 							</div>
 							<div class="side">
 								<h2 class="sidebar-heading">Recent Blog</h2>

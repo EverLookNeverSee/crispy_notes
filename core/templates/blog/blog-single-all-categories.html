@@ -1,0 +1,8 @@
+{% load blog_tags %}
+<p>
+    <ul class="category">
+        {% for cat in categories %}
+            <li><a href="{% url 'blog:category' cat_name=cat.name %}"><i class="icon-check"></i>{{ cat.name }}</a></li>
+        {% endfor %}
+    </ul>
+</p>
