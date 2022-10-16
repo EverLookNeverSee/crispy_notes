@@ -11,8 +11,12 @@ class IndexPageView(TemplateView):
     def get(self, request, *args, **kwargs):
         context = self.get_context_data(**kwargs)
         normal_posts = Post.objects.filter(ok_to_publish=True, login_required=False)[:7]
-        recommended_posts = Post.objects.filter(ok_to_publish=True, login_required=False)[10:13]
-        top_viewed_posts = Post.objects.filter(ok_to_publish=True, login_required=False).order_by("-n_views")[:3]
+        recommended_posts = Post.objects.filter(
+            ok_to_publish=True, login_required=False
+        )[10:13]
+        top_viewed_posts = Post.objects.filter(
+            ok_to_publish=True, login_required=False
+        ).order_by("-n_views")[:3]
         categories = Category.objects.all()
         context["normal_posts"] = normal_posts
         context["recommended_posts"] = recommended_posts

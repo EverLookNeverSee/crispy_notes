@@ -12,7 +12,9 @@ class Category(models.Model):
 class Post(models.Model):
     author = models.ForeignKey("accounts.Profile", on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
-    image = models.ImageField(blank=True, null=True, upload_to="blog/", default="blog/default.jpg")
+    image = models.ImageField(
+        blank=True, null=True, upload_to="blog/", default="blog/default.jpg"
+    )
     content = models.TextField()
     category = models.ManyToManyField(Category)
     n_views = models.PositiveIntegerField(default=0)
@@ -23,7 +25,7 @@ class Post(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ["-created_at"]
         verbose_name = "Post"
         verbose_name_plural = "Posts"
 
