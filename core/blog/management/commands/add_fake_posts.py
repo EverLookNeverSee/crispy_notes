@@ -18,7 +18,9 @@ class Command(BaseCommand):
         for _ in range(5):
             f_name = self.fake.first_name()
             l_name = self.fake.last_name()
-            user = User.objects.create_user(email=f"{f_name}.{l_name}@email.com", password="Test@123456")
+            user = User.objects.create_user(
+                email=f"{f_name}.{l_name}@email.com", password="Test@123456"
+            )
             profile = Profile.objects.get(user=user)
             profile.first_name = f_name
             profile.last_name = l_name
@@ -35,6 +37,6 @@ class Command(BaseCommand):
                     publish_date=timezone.now(),
                 )
                 post.n_views = randint(1, 200)
-                category = Category.objects.get(name=choice(category_list)),
+                category = (Category.objects.get(name=choice(category_list)),)
                 post.category.set(category)
                 post.save()

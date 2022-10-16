@@ -15,7 +15,7 @@ class PostAdmin(SummernoteModelAdmin):
     )
     search_fields = ("title", "content")
     ordering = ("-created_at",)
-    summernote_fields = ('content',)
+    summernote_fields = ("content",)
 
 
 admin.site.register(Post, PostAdmin)
