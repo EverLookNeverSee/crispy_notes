@@ -74,6 +74,7 @@
 								{% if request.user.is_authenticated %}
 								<li class="active"><a href="#">Logged in as {{ request.user.email}}</a></li>
 								<li class="active"><a href="{% url 'accounts:logout' %}">Logout</a></li>
+								<li class="active"><a href="{% url 'blog:post-create' %}">Create a post</a></li>
 								{% else %}
 								<li class="active"><a href="{% url 'accounts:login' %}">Login</a></li>
 								<li class="active"><a href="{% url 'accounts:signup' %}">SignUp</a></li>
