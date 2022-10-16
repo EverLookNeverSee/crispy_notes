@@ -14,3 +14,9 @@ def footer_recommended_posts():
 def footer_all_categories():
     all_cats = Category.objects.all()
     return {"categories": all_cats}
+
+
+@register.inclusion_tag(filename="blog/blog-single-all-categories.html")
+def blog_single_all_categories():
+    all_cats = Category.objects.all()
+    return {"categories": all_cats}
