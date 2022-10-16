@@ -1,9 +1,10 @@
 from django.contrib import admin
+from django_summernote.admin import SummernoteModelAdmin
 from .models import Post, Category
 
 
 # Register your models here.
-class PostAdmin(admin.ModelAdmin):
+class PostAdmin(SummernoteModelAdmin):
     list_display = (
         "author",
         "title",
@@ -14,6 +15,7 @@ class PostAdmin(admin.ModelAdmin):
     )
     search_fields = ("title", "content")
     ordering = ("-created_at",)
+    summernote_fields = ('content',)
 
 
 admin.site.register(Post, PostAdmin)
