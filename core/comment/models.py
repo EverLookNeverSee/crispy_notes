@@ -11,9 +11,9 @@ class Comment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['-created_at']
-        verbose_name = 'Comment'
-        verbose_name_plural = 'Comments'
+        ordering = ["-created_at"]
+        verbose_name = "Comment"
+        verbose_name_plural = "Comments"
 
     def __str__(self):
         return f"{self.name} - {self.email}"
