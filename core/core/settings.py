@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.humanize",
+    "django.contrib.sites",
     # apps
     "home",
     "accounts",
@@ -47,6 +48,9 @@ INSTALLED_APPS = [
     "django_celery_beat",
     "django_summernote",
 ]
+
+# Sites framework configuration
+SITE_ID = 2
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
