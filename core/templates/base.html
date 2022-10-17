@@ -72,7 +72,7 @@
 								<li><a href="{% url 'home:about' %}">About Me</a></li>
 								<li><a href="{% url 'home:contact' %}">Contact</a></li>
 								{% if request.user.is_authenticated %}
-								<li class="active"><a href="#">Logged in as {{ request.user.email}}</a></li>
+								<li class="active"><a href="#">Logged in as {{ request.user.email }}</a></li>
 								<li class="active"><a href="{% url 'accounts:logout' %}">Logout</a></li>
 								<li class="active"><a href="{% url 'blog:post-create' %}">Create a post</a></li>
 								{% else %}
