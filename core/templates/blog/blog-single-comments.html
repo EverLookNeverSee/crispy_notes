@@ -1,0 +1,16 @@
+{% load static %}
+{% load comment_tags %}
+{% load humanize %}
+
+{% for comment in comments %}
+<div class="review">
+    <div class="user-img" style="background-image: url({% static 'assets/images/user.png' %})"></div>
+        <div class="desc">
+            <h4>
+                <span class="text-left">{{ comment.name }}</span>
+                <span class="text-right">{{ comment.created_at|naturalday }}</span>
+            </h4>
+            <p>{{ comment.message }}</p>
+        </div>
+</div>
+{% endfor %}
