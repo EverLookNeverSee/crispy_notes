@@ -46,6 +46,14 @@ INSTALLED_APPS = [
     "accounts",
     "blog",
     "comment",
+    # api
+    "rest_framework",
+    "django_filters",
+    "drf_yasg",
+    "rest_framework.authtoken",
+    "rest_framework_simplejwt",
+    "mail_templated",
+    "djoser",
     # other
     "django_celery_beat",
     "django_summernote",
