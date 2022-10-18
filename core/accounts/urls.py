@@ -44,4 +44,5 @@ urlpatterns = [
     # Api version 1 - Using djoser package
     path("api/v1/", include("djoser.urls")),
     path("api/v1/", include("djoser.urls.jwt")),
+    path("api/v2/", include("accounts.api.v2.urls")),
 ]
