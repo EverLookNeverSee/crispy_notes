@@ -34,13 +34,9 @@ schema_view = get_schema_view(
     ),
     public=True,
     permission_classes=[permissions.AllowAny],
-
 )
 
-sitemaps = {
-    'static': StaticViewSitemap,
-    'blog': BlogSitemap
-}
+sitemaps = {"static": StaticViewSitemap, "blog": BlogSitemap}
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -49,7 +45,12 @@ urlpatterns = [
     path("blog/", include("blog.urls")),
     path("comment/", include("comment.urls")),
     path("summernote/", include("django_summernote.urls")),
-    path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="django.contrib.sitemaps.views.sitemap"),
+    path(
+        "sitemap.xml",
+        sitemap,
+        {"sitemaps": sitemaps},
+        name="django.contrib.sitemaps.views.sitemap",
+    ),
     path("robots.txt", include("robots.urls")),
     path("api-auth/", include("rest_framework.urls")),
     path("api-docs", include_docs_urls(title="API Docs")),
