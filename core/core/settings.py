@@ -160,7 +160,7 @@ LOGIN_REDIRECT_URL = "home:index"
 LOGOUT_REDIRECT_URL = "home:index"
 
 # Authentication Backends
-AUTHENTICATION_BACKENDS = ["accounts.backends.EmailBackend"]
+# AUTHENTICATION_BACKENDS = ["accounts.backends.EmailBackend"]
 
 
 # Email configuration
