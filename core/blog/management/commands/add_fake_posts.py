@@ -40,6 +40,9 @@ class Command(BaseCommand):
                     publish_date=timezone.now(),
                 )
                 post.n_views = randint(1, 200)
-                category = (Category.objects.get(name=choice(category_list)),)
+                category = (
+                    Category.objects.get(name=choice(category_list)),
+                    Category.objects.get(name=choice(category_list)),
+                )
                 post.category.set(category)
                 post.save()
