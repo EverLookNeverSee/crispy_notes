@@ -17,7 +17,6 @@ urlpatterns = [
     path("login/", CustomLoginView.as_view(), name="login"),
     path("logout/", CustomLogoutView.as_view(), name="logout"),
     path("signup/", CustomSignupView.as_view(), name="signup"),
-
     # Account verification and password reset
     path(
         "verification/<uidb64>/<token>/",
@@ -40,7 +39,6 @@ urlpatterns = [
         CustomPasswordResetCompleteView.as_view(),
         name="password_reset_complete",
     ),
-
     # Api version 1 - Using djoser package
     path("api/v1/", include("djoser.urls")),
     path("api/v1/", include("djoser.urls.jwt")),
