@@ -34,3 +34,26 @@ def active_user():
     )
     user.save()
     return user
+
+
+@pytest.mark.django_db
+class TestRegistrationAPIView:
+    def test_register_user_successfully_status(self, api_client):
+        url = reverse("accounts:api-v2:registration")
+        data = {
+            "email": "test_user@test.com",
+            "password": "A@123456",
+            "password1": "A@123456"
+        }
+        response = api_client.post(url, data)
+        assert response.status_code == 201
+
+    def test_common_user_fields(self, common_user):
+        assert common_user.email == "test_user@test.com"
+        assert common_user.is_verified is False
+        assert common_user.id == 1
+
+    def test_active_user_fields(self, active_user):
+        assert active_user.email == "active_user@test.com"
+        assert active_user.is_verified is True
+        assert active_user.id == 1
