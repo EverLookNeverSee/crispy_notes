@@ -112,7 +112,7 @@ class TestCategoryApiViewSet:
 @pytest.mark.django_db
 class TestPostApiViewSet:
     def test_get_posts_list_successful_status(
-            self, api_client, active_user, sample_post
+        self, api_client, active_user, sample_post
     ):
         url = reverse("blog:api-v1:post-list")
         api_client.force_login(active_user)
@@ -120,7 +120,7 @@ class TestPostApiViewSet:
         assert response.status_code == 200
 
     def test_create_post_successful_status(
-            self, api_client, active_user, sample_category
+        self, api_client, active_user, sample_category
     ):
         url = reverse("blog:api-v1:post-list")
         data = {
@@ -138,7 +138,7 @@ class TestPostApiViewSet:
         assert response.status_code == 201
 
     def test_modify_post_fields_successful_status(
-            self, api_client, active_user, sample_post
+        self, api_client, active_user, sample_post
     ):
         url = reverse("blog:api-v1:post-detail", kwargs={"pk": sample_post.id})
         data = {"content": "This is the content."}
@@ -147,7 +147,7 @@ class TestPostApiViewSet:
         assert response.status_code == 200
 
     def test_delete_post_object_successful_status(
-            self, api_client, active_user, sample_post
+        self, api_client, active_user, sample_post
     ):
         url = reverse("blog:api-v1:post-detail", kwargs={"pk": sample_post.id})
         api_client.force_login(active_user)

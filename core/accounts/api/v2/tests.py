@@ -28,9 +28,7 @@ def common_user():
 @pytest.mark.django_db
 def active_user():
     user = User.objects.create_user(
-        email="active_user@test.com",
-        password="A@123456",
-        is_verified=True
+        email="active_user@test.com", password="A@123456", is_verified=True
     )
     user.save()
     return user
@@ -43,7 +41,7 @@ class TestRegistrationAPIView:
         data = {
             "email": "test_user@test.com",
             "password": "A@123456",
-            "password1": "A@123456"
+            "password1": "A@123456",
         }
         response = api_client.post(url, data)
         assert response.status_code == 201
@@ -159,11 +157,11 @@ class TestUserProfile:
         response = api_client.get(url)
         assert response.status_code == 200
 
-    def test_modify_user_profile_fields_successful_status(self, api_client, active_user):
+    def test_modify_user_profile_fields_successful_status(
+        self, api_client, active_user
+    ):
         url = reverse("accounts:api-v2:profile")
-        data = {
-            "first_name": "Edited Active"
-        }
+        data = {"first_name": "Edited Active"}
         api_client.force_login(active_user)
         response = api_client.patch(url, data)
         assert response.status_code == 200

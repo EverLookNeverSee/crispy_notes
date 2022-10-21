@@ -4,7 +4,6 @@ from accounts.models import Profile
 
 
 class CommentSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Comment
         fields = ["id", "post", "name", "email", "message", "is_approved", "created_at"]
