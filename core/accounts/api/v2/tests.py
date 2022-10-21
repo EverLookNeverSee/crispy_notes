@@ -150,3 +150,20 @@ class TestChangePasswordAPIView:
         response = api_client.put(url, data)
         assert response.status_code == 400
 
+
+@pytest.mark.django_db
+class TestUserProfile:
+    def test_getting_user_profile_success_status(self, api_client, active_user):
+        url = reverse("accounts:api-v2:profile")
+        api_client.force_login(active_user)
+        response = api_client.get(url)
+        assert response.status_code == 200
+
+    def test_modify_user_profile_fields_successful_status(self, api_client, active_user):
+        url = reverse("accounts:api-v2:profile")
+        data = {
+            "first_name": "Edited Active"
+        }
+        api_client.force_login(active_user)
+        response = api_client.patch(url, data)
+        assert response.status_code == 200
