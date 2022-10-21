@@ -56,3 +56,54 @@ def sample_post(active_user, sample_category):
     sample_post.category.set([sample_category])
     sample_post.save()
     return sample_post
+
+
+@pytest.mark.django_db
+class TestCategoryApiViewSet:
+    def test_get_list_of_categories_successful_status(
+        self, api_client, active_user, sample_categories
+    ):
+        url = reverse("blog:api-v1:category-list")
+        api_client.force_login(active_user)
+        response = api_client.get(url)
+        assert response.status_code == 200
+
+    def test_get_category_detail_successful_status(
+        self, api_client, active_user, sample_categories
+    ):
+        url = reverse("blog:api-v1:category-detail", kwargs={"pk": 1})
+        api_client.force_login(active_user)
+        response = api_client.get(url)
+        assert response.status_code == 200
+
+    def test_create_category_successful_status(self, api_client, active_user):
+        url = reverse("blog:api-v1:category-list")
+        data = {"name": "Fun"}
+        api_client.force_login(active_user)
+        response = api_client.post(url, data)
+        assert response.status_code == 201
+
+    def test_get_category_by_id_successful_status(
+        self, api_client, active_user, sample_categories
+    ):
+        url = reverse("blog:api-v1:category-detail", kwargs={"pk": 1})
+        api_client.force_login(active_user)
+        response = api_client.get(url)
+        assert response.status_code == 200
+
+    def test_patch_category_by_id_successful_status(
+        self, api_client, active_user, sample_categories
+    ):
+        url = reverse("blog:api-v1:category-detail", kwargs={"pk": 1})
+        data = {"name": "Aero"}
+        api_client.force_login(active_user)
+        response = api_client.patch(url, data)
+        assert response.status_code == 200
+
+    def test_delete_category_by_id_successful_status(
+        self, api_client, active_user, sample_categories
+    ):
+        url = reverse("blog:api-v1:category-detail", kwargs={"pk": 1})
+        api_client.force_login(active_user)
+        response = api_client.delete(url)
+        assert response.status_code == 204
