@@ -109,7 +109,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             "image",
             "bio",
         ]
-        read_only_fields = ["email"]
+        read_only_fields = ["email", "user"]
 
 
 class ActivationResendSerializer(serializers.Serializer):
