@@ -12,7 +12,7 @@ from rest_framework import status
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.views import APIView
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework_simplejwt.views import TokenObtainPairView
 from ...models import Profile
 from django.shortcuts import get_object_or_404
@@ -27,6 +27,7 @@ from accounts.models import User
 
 class RegistrationAPIView(generics.GenericAPIView):
     serializer_class = RegistrationSerializer
+    permission_classes = [AllowAny]
 
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
