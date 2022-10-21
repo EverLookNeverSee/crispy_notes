@@ -60,3 +60,31 @@ def sample_comment(active_user, sample_post, sample_category):
     )
     sample_comment.save()
     return sample_comment
+
+
+@pytest.mark.django_db
+class TestCommentApiView:
+    def test_get_user_comments_list_successful_status(
+        self, api_client, active_user, sample_comment
+    ):
+        url = reverse("comment:api-v1:comments")
+        api_client.force_login(active_user)
+        response = api_client.get(url)
+        assert response.status_code == 200
+
+    def test_create_comment_for_post_successful_status(
+        self, api_client, active_user, sample_post
+    ):
+        url = reverse("comment:api-v1:comments")
+        profile = Profile.objects.get(user__id=active_user.id)
+        api_client.force_login(active_user)
+        data = {
+            "post": sample_post.pk,
+            "name": f"{profile.first_name} {profile.last_name}",
+            "email": active_user.email,
+            "message": "This message is for testing comment creation api.",
+            "is_approved": True,
+        }
+        api_client.force_login(active_user)
+        response = api_client.post(url, data)
+        assert response.status_code == 201
