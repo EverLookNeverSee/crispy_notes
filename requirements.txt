@@ -10,6 +10,7 @@ FAKER==15.1.1
 django-summernote==0.8.20.0
 django-robots==5.0
 flake8==5.0.4
+locust==2.12.2
 
 celery==5.2.7
 redis==4.3.4
