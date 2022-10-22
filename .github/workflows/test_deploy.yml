@@ -1,0 +1,19 @@
+name: Django project test and deploy
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  Test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup Docker-Compose
+      run: docker-compose up --build -d
+    - name: Run tests
+      run: docker exec backend sh -c "black . && flake8 && cd core/ && pytest ."
