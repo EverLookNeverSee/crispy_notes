@@ -1,6 +1,6 @@
 {% autoescape off %}
 
-Hi {{ user.email }}
+Hi {{ user }}
 
 Please use the link below to verify your account.
 http://{{ domain }}{% url 'accounts:verification' uidb64=uidb64 token=token %}
