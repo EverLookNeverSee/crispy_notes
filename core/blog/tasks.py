@@ -15,15 +15,12 @@ def send_newsletter_email():
     latest_posts = Post.objects.filter(ok_to_publish=True)[:5]
     body = render_to_string(
         template_name="email/newsletter.html",
-        context={
-            "site": Site.objects.get(id=settings.SITE_ID),
-            "posts": latest_posts
-        }
+        context={"site": Site.objects.get(id=settings.SITE_ID), "posts": latest_posts},
     )
     email_obj = EmailMessage(
         subject="Crispy Notes NewsLetter",
         body=body,
         from_email="newsletter@crispy_notes.com",
-        to=[user.email for user in users]
+        to=[user.email for user in users],
     )
     email_obj.send()
