@@ -17,9 +17,6 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from ...models import Profile
 from django.shortcuts import get_object_or_404
 from mail_templated import EmailMessage
-from django.utils.decorators import method_decorator
-from django.views.decorators.cache import cache_page
-from django.views.decorators.vary import vary_on_headers
 from ..utilities import EmailThread
 from rest_framework_simplejwt.tokens import RefreshToken
 import jwt
@@ -113,12 +110,6 @@ class ProfileAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = ProfileSerializer
     queryset = Profile.objects.all()
 
-    @method_decorator(cache_page(60 * 60 * 2))
-    @method_decorator(
-        vary_on_headers(
-            "Authorization",
-        )
-    )
     def get_object(self):
         queryset = self.get_queryset()
         obj = get_object_or_404(queryset, user=self.request.user)
