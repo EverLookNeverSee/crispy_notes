@@ -62,7 +62,7 @@ INSTALLED_APPS = [
 ]
 
 # Sites framework configuration
-SITE_ID = 3
+SITE_ID = 4
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
