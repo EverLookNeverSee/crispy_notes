@@ -30,7 +30,19 @@ python manage.py add_fake_posts
 ```
 * Opening demo version:
     * http://127.0.0.1:8000 --> Web app
+    * http://127.0.0.1:8000/sitemap.xml --> Sitemap
     * http://127.0.0.1:5000 --> Smtp4dev
     * http://127.0.0.1:8089 --> Api load test(locust)
 
 ---
+
+### Apps:
+* [core:](core/core)
+  * Urls:
+    * sitemap.xml
+    * robots.txt
+    * api-auth
+    * api-docs
+    * swagger
+    * swagger/api_output.json
+    * redoc
