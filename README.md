@@ -37,8 +37,10 @@ python manage.py add_fake_posts
 ---
 
 ### Apps:
+List of apps: core, home, accounts, blog, comment
+
 * [core:](core/core)
-  * Urls:
+  * urls:
     * sitemap.xml
     * robots.txt
     * api-auth
@@ -46,3 +48,15 @@ python manage.py add_fake_posts
     * swagger
     * swagger/api_output.json
     * redoc
+* [home:](core/home)
+  * models:
+    * Contact
+  * forms:
+    * ContactForm
+  * urls:
+    * about
+    * contact
+  * views:
+    * IndexPageView
+    * AboutPageView
+    * ContactPageView
