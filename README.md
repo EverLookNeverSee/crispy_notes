@@ -37,26 +37,5 @@ python manage.py add_fake_posts
 ---
 
 ### Apps:
-List of apps: core, home, accounts, blog, comment
-
-* [core:](core/core)
-  * urls:
-    * sitemap.xml
-    * robots.txt
-    * api-auth
-    * api-docs
-    * swagger
-    * swagger/api_output.json
-    * redoc
-* [home:](core/home)
-  * models:
-    * Contact
-  * forms:
-    * ContactForm
-  * urls:
-    * about
-    * contact
-  * views:
-    * IndexPageView
-    * AboutPageView
-    * ContactPageView
+List of apps: core, home, accounts, blog, comment   
+Open [swagger url](http://127.0.0.1:8000/swagger/) to see full list of api endpoints.
